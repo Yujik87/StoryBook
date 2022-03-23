@@ -38,17 +38,17 @@ export const SetTimeoutExample1 = () => {
     const [fake, setFake] = useState(1)
 
     useEffect(() => {
-        setTimeout(() => {
-            console.log('setTimeout')
-            document.title = counter.toString();
+        setInterval(() => {
+            console.log('tick: ' + counter) //берёт из замыкания один раз и больше не обновляет значение, потому всегда "1"
+            setCounter(state => state + 1)
         }, 1000)
-    }, [counter])
+    }, [])
 
 
 
     return <>
-        Hello, {counter} {fake}
-        <button onClick={() => setFake(fake + 1)}>Fake+</button>
-        <button onClick={() => setCounter(counter + 1)}>Counter+</button>
+        Hello, counter: {counter} - fake: {fake}
+        {/*<button onClick={() => setFake(fake + 1)}>Fake+</button>*/}
+        {/*<button onClick={() => setCounter(counter + 1)}>Counter+</button>*/}
     </>
 }
